@@ -1,5 +1,7 @@
 #틱택토
 
+import random
+
 #초기맵 만들기
 the_board = {}
 for i in range(1,10):
@@ -41,17 +43,22 @@ def game_over(board):
 
 print_board(the_board) #빈 맵 출력
 turn = 'O' #O/X
-count = 0 #9번까지만 실행 가능해야하기에 만든 변수
+num_list = [i for i in range(1,10)] #9번까지만 실행 가능해야하기에 만든 리스트, 1~9까지 숫자 중 이미 사용된 숫자는 제거됨
 
-while count < 10: 
+while len(num_list) > 0: #num_list가 0이상이면 반복
     while True:
         print('어느 위치에 표시하시겠습니까? > ')
-        space = int(input())
+        if turn == 'O': #사용자 입력을 받는 경우
+            space = int(input())
+        else: #랜덤으로 입력을 받는 경우, 남아있는 숫자 중 랜덤으로 선택
+            space = random.choice(num_list)
 
+        #입력된 값이 비어있을 경우 표시 후 num_list에서 해당 숫자 제거
         if the_board[space] == ' ':
             the_board[space] = turn
-            count += 1
+            num_list.remove(space)
             break
+        #입력된 값이 비어있지 않은 경우
         else:
             print('그 자리는 표시할 수 없습니다.')
 
@@ -69,7 +76,7 @@ while count < 10:
         print('게임이 종료되었습니다.')
         break
     else:
-        if count == 9:
+        if len(num_list) == 0:
             print('무승부 입니다.')
             print('게임이 종료되었습니다.')
             break
