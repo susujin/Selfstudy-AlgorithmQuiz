@@ -12,6 +12,15 @@ def print_board(board):
         print(v, "| ", end="")
         if k % 3 == 0:
             print("\n" + "-" * 10)
+# #맵 그리기2
+# def print_board(board):
+#     for k,v in board.items():
+#         if k % 3 == 0 and k != 9:
+#             print("\n" + "-" * 10)
+#         elif k == 9:
+#             print()
+#         else:
+#             print(v, "| ", end="")
 
 #게임종료 확인
 #가로/세로/대각선이 같으면서 공백 X
@@ -47,7 +56,7 @@ turn = 'O'
 #9번까지만 실행 가능해야하며 컴퓨터가 랜덤으로 값을 뽑기위한 리스트, 1~9까지 숫자 중 이미 사용된 숫자는 제거됨
 num_list = [i for i in range(1,10)] 
 
-while True: #num_list가 0이상이면 반복
+while True:
     if turn == 'O': #사용자 입력을 받는 경우
         while True:
             try: #int로 묶어서 문자가 들어오면 무조건 오류발생. 때문에 예외처리함
